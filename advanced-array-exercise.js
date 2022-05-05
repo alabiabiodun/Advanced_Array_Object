@@ -30,7 +30,7 @@ const array = [
 //Create an array using forEach that has all the usernames with a "!" to each of the usernames
 const list1 = [];
 array.forEach(content=>{
-      list1.push({username:content.username+"!",team:content.team,score:content.score,items:content.items});
+      list1.push({...content, username:content.username+"!"});
 });
 
 console.log('forEach',list1);
@@ -39,7 +39,7 @@ console.log('forEach',list1);
 //Create an array using map that has all the usernames with a "? to each of the usernames
 const list2 = [];
 const mapArray = array.map(content => {
-     return list2.push({username:content.username+"?",team:content.team,score:content.score,items:content.items});
+     return list2.push({...content, username:content.username+"?"});
 });
 
 console.log('map',list2);
@@ -93,9 +93,9 @@ pureFunction([1, 2, 4, 5, 8, 9]);
 
 //BONUS: create a new list with all user information, but add "!" to the end of each items they own.
 const list3 = [];
-const newItems = [];
-mapArray = array.map(content => {
-    return list3.push({username:content.username,team:content.team,score:content.score,items:content.items.map((itemCont)=>newItems.push(itemCont + "!"))});        
+array.forEach(content => {
+    const newItems = content.items.map((itemCont) => itemCont + "!");
+    return list3.push({...content, items:newItems});        
     
 });
 
